@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidyexa | Premium Skill & Course Recommendation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" onclick="showSection('home')">Vidyexa</div>
+        <div class="nav-links">
+            <a href="#" onclick="showSection('dashboard')">Dashboard</a>
+            <a href="#" onclick="showSection('profile')">Profile</a>
+            <a href="#" onclick="showSection('evaluation')">Skill Evaluation</a>
+            <a href="#" onclick="showSection('discover')">Discover Courses</a>
+        </div>
+    </nav>
+
+    <main class="content">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero-header">
+                <h1>Welcome to Vidyexa</h1>
+                <p>Your personalized AI-driven learning and career growth platform.</p>
+            </div>
+            
+            <h2 class="section-title">Famous Career Paths</h2>
+            <div class="career-paths-grid">
+                <div class="card career-path-card" onclick="autoFillDiscover('Frontend Development')">
+                    <h3>Frontend Developer</h3>
+                    <p>Build beautiful, dynamic user interfaces and web applications.</p>
+                </div>
+                <div class="card career-path-card" onclick="autoFillDiscover('Machine Learning')">
+                    <h3>Machine Learning Engineer</h3>
+                    <p>Design predictive models and implement intelligent AI algorithms.</p>
+                </div>
+                <div class="card career-path-card" onclick="autoFillDiscover('Cybersecurity')">
+                    <h3>Cybersecurity Analyst</h3>
+                    <p>Protect networks, uncover vulnerabilities, and secure data.</p>
+                </div>
+                <div class="card career-path-card" onclick="autoFillDiscover('Cloud Computing')">
+                    <h3>Cloud Architect</h3>
+                    <p>Design and deploy scalable, secure cloud infrastructure.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section">
+            <h1 class="section-title">Your Progress Dashboard</h1>
+            <div class="dashboard-grid">
+                <div class="card stat-card glass-card">
+                    <h3>Employability Score</h3>
+                    <div class="score-circle" id="skillScore">0</div>
+                </div>
+                <div class="card stat-card glass-card">
+                    <h3>Current Proficiency</h3>
+                    <div id="proficiencyLevel" class="highlight-text">Beginner</div>
+                </div>
+                <div class="card career-card glass-card">
+                    <h3>Recommended Career Path</h3>
+                    <div id="careerRecommendation" class="muted-text">Complete Evaluation to unlock!</div>
+                </div>
+            </div>
+            
+            <div class="card chart-container glass-card">
+                <h3>Skill Progression</h3>
+                <canvas id="skillChart" height="100"></canvas>
+            </div>
+
+            <h2 class="section-title">Your Learning Roadmap</h2>
+            <div class="roadmap-container glass-card" id="learningRoadmap">
+                <p class="muted-text">Complete your profile and evaluation to generate a customized roadmap.</p>
+            </div>
+            
+            <h2 class="section-title">Skill Gap Analysis</h2>
+            <div id="gapAnalysis" class="glass-card card">
+                <p class="muted-text">Complete evaluation to view skill gaps.</p>
+            </div>
+
+            <h2 class="section-title">Your Enrolled Courses</h2>
+            <div id="enrolledCoursesGrid" class="courses-grid" style="margin-top: 20px;">
+                <p class="muted-text" style="grid-column: 1 / -1; margin-left: 10px;">You have not enrolled in any courses yet. Discover courses to begin!</p>
+            </div>
+        </section>
+
+        <!-- Profile Section -->
+        <section id="profile" class="section">
+            <div class="card form-container glass-card">
+                <h2>Student Profile</h2>
+                <div class="input-grid">
+                    <input type="text" id="studentName" placeholder="Full Name" />
+                    <input type="text" id="education" placeholder="Education (e.g. B.Tech)" />
+                    <input type="text" id="branch" placeholder="Branch (e.g. Computer Science)" />
+                    <input type="text" id="targetRole" placeholder="Target Job Role (e.g. Frontend Developer)" />
+                    
+                    <!-- Expanded Profile Fields -->
+                    <textarea id="bio" placeholder="Short Bio (Tell us about yourself)"></textarea>
+                    <input type="url" id="githubLink" placeholder="GitHub / LinkedIn URL" />
+                    <input type="url" id="portfolioLink" placeholder="Portfolio Website URL" />
+                    <input type="text" id="workEnv" placeholder="Preferred Work Environment (Remote, Hybrid, On-site)" />
+                </div>
+                <button onclick="saveProfile()" class="primary-btn mt-4">Save Profile</button>
+            </div>
+        </section>
+
+        <!-- Skill Evaluation Section -->
+        <section id="evaluation" class="section">
+            <div class="card mt-4 glass-card">
+                <h2>Skill Assessment (MCQ)</h2>
+                <p class="muted-text">Test your foundational knowledge to generate a tailored roadmap.</p>
+                <div id="quizContainer">
+                    <!-- Quiz questions generated dynamically -->
+                </div>
+                <button onclick="submitQuiz()" class="primary-btn mt-4">Submit Evaluation</button>
+            </div>
+        </section>
+
+        <!-- Discover Section -->
+        <section id="discover" class="section">
+            <div class="card discover-header glass-card">
+                <h2>Discover Your Learning</h2>
+                <div class="recommendation-block">
+                    <h3>Get Personalized Recommendations</h3>
+                    <div class="dynamic-selectors">
+                        <!-- Smart Search Input -->
+                        <div class="smart-search-container">
+                            <input type="text" id="categorySelect" placeholder="Category (e.g., Web Development)" autocomplete="off" />
+                            <div class="autocomplete-suggestions" id="categorySuggestions"></div>
+                        </div>
+                        
+                        <!-- Custom Dropdown for Difficulty -->
+                        <div class="custom-dropdown" id="difficultyDropdown">
+                            <div class="selected-value">Select Difficulty</div>
+                            <div class="options">
+                                <div class="option" data-value="Beginner">Beginner</div>
+                                <div class="option" data-value="Intermediate">Intermediate</div>
+                                <div class="option" data-value="Advanced">Advanced</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="difficultySelect" value="" />
+                        
+                        <button onclick="fetchRecommendations()" class="primary-btn">Find Courses</button>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title">Recommended Courses</h2>
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Recommendations will be populated here -->
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
