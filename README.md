@@ -212,8 +212,8 @@ public class AddServlet extends HttpServlet {
 
     private static final String DB_URL =
         "jdbc:mysql://localhost:3306/online_courses?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-    private static final String DB_USER = "student";
-    private static final String DB_PASS = "student123";
+    private static final String DB_USER = "";
+    private static final String DB_PASS = "";
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
