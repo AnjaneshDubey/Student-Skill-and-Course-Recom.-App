@@ -1,8 +1,37 @@
 📚 Online Course Recommendation System
 
-A Java-based project implementing OOPs, Collections, JDBC, DAO Pattern, Swing GUI, and Multithreading for recommending courses based on user preferences.
+A comprehensive project featuring a modern Web Application, Swing GUI, and Servlet implementation for recommending courses based on user preferences. 
+
+💻 Technology Stack
+===================
+
+**Frontend (Web UI)**
+- **HTML5 & CSS3**: Modern, responsive layout with glassmorphism, dynamic animations, and premium aesthetics.
+- **JavaScript (Vanilla ES6+)**: Interactive forms, API fetching, and dynamic DOM manipulation without external frameworks.
+
+**Backend**
+- **Java (JDK 24)**: Core application logic.
+- **Custom HTTP Server (`com.sun.net.httpserver`)**: Serves static web assets and provides RESTful JSON API endpoints (`/api/recommend`).
+- **Core Java Concepts**: OOPs, Collections, Multithreading (background course loading), Exception Handling.
+- **Design Patterns**: DAO (Data Access Object) Pattern.
+
+**Database**
+- **MySQL 8.x**: Relational database for storing course details.
+- **JDBC**: Database connectivity using PreparedStatements for secure CRUD operations.
+
+**Legacy / Alternative Interfaces**
+- **Java Swing**: Desktop-based Graphical User Interface.
+- **Apache Tomcat & Servlets**: Alternative web deployment handling database insertion.
 
 🚀 Features
+✅ Web-Based UI (Modern App)
+
+- Modern Glassmorphism UI
+- REST API via built-in Java HttpServer
+- Dynamic search and filtering
+- Responsive and interactive design
+
+
 ✅ Object-Oriented Programming
 
 Inheritance (Course → ProgrammingCourse / NonTechnicalCourse)
@@ -64,7 +93,13 @@ Online-Course-Recommendation-System/
 │   │   └── CourseLoaderThread.java
 │   │
 │   ├── ui/
-│       └── MainGUI.java
+│   │   ├── MainGUI.java
+│   │   └── WebServer.java
+│
+├── web/ (Frontend Assets)
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
 │
 ├── lib/ (JDBC driver)
 │
@@ -95,9 +130,14 @@ CREATE TABLE courses (
 Compile
 javac -d bin -cp "bin;lib/*" src\**\*.java
 
-Run
+Run Web Server (Modern UI)
 cd bin
-java ui.MainGUI
+java -cp ".;../lib/*" ui.WebServer
+Then open http://localhost:8080 in your browser.
+
+Run Desktop App (Swing UI)
+cd bin
+java -cp ".;../lib/*" ui.MainGUI
 
 
 🧵 Multithreading Example
