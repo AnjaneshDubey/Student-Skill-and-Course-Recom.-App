@@ -95,7 +95,8 @@ public class WebServer {
                     .append("\"description\":\"").append(escapeJson(c.getDescription())).append("\",")
                     .append("\"freeTool\":\"").append(escapeJson(c.getFreeTool())).append("\",")
                     .append("\"premiumTool\":\"").append(escapeJson(c.getPremiumTool())).append("\",")
-                    .append("\"advancedTopics\":\"").append(escapeJson(c.getAdvancedTopics())).append("\"")
+                    .append("\"advancedTopics\":\"").append(escapeJson(c.getAdvancedTopics())).append("\",")
+                    .append("\"prerequisites\":\"").append(escapeJson(c.getPrerequisites())).append("\"")
                     .append("}");
                 if (i < recs.size() - 1) json.append(",");
             }

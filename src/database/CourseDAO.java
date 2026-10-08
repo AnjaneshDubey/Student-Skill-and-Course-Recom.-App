@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CourseDAO {
 
     public boolean addCourse(Course course) {
-        String sql = "INSERT INTO courses (name, category, difficulty, rating, duration, description, free_tool, premium_tool, advanced_topics) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO courses (name, category, difficulty, rating, duration, description, free_tool, premium_tool, advanced_topics, prerequisites) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -20,6 +20,7 @@ public class CourseDAO {
             stmt.setString(7, course.getFreeTool());
             stmt.setString(8, course.getPremiumTool());
             stmt.setString(9, course.getAdvancedTopics());
+            stmt.setString(10, course.getPrerequisites());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
@@ -47,7 +48,8 @@ public class CourseDAO {
                         rs.getString("description"),
                         rs.getString("free_tool"),
                         rs.getString("premium_tool"),
-                        rs.getString("advanced_topics")
+                        rs.getString("advanced_topics"),
+                        rs.getString("prerequisites")
                 );
                 courses.add(c);
             }

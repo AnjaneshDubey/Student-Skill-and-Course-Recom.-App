@@ -301,10 +301,26 @@ input[type="text"]:focus, input[type="url"]:focus, textarea:focus {
     margin-top: 0;
 }
 .course-card.expanded .course-details-drawer {
-    max-height: 1000px;
+    max-height: 450px;
+    overflow-y: auto;
     opacity: 1;
     padding: 20px;
     margin-top: 20px;
+}
+
+/* Internal Scrollbar for Drawer */
+.course-details-drawer::-webkit-scrollbar {
+    width: 6px;
+}
+.course-details-drawer::-webkit-scrollbar-track {
+    background: transparent;
+}
+.course-details-drawer::-webkit-scrollbar-thumb {
+    background: #d1d5db; /* Neutral pastel grey */
+    border-radius: 10px;
+}
+.course-details-drawer::-webkit-scrollbar-thumb:hover {
+    background: var(--warm-lavender);
 }
 .course-card.expanded::after { display: none; }
 .course-card.expanded { transform: translateY(-5px); box-shadow: var(--hover-shadow); }
@@ -313,6 +329,19 @@ input[type="text"]:focus, input[type="url"]:focus, textarea:focus {
 .tool-tag { display: inline-block; padding: 8px 12px; border-radius: 8px; font-size: 0.9em; font-weight: 500; margin-right: 10px; margin-bottom: 10px; }
 .tool-tag.free { background: var(--mint-green); color: #2b6b6b; }
 .tool-tag.premium { background: var(--blush-pink); color: #8a3f4b; }
+
+.prereq-tag {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px; /* Pill shape */
+    font-size: 0.85em;
+    font-weight: 500;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    background: var(--warm-lavender);
+    color: var(--text-primary);
+    border: 1px solid rgba(0,0,0,0.05);
+}
 
 .topics-list { padding-left: 20px; color: var(--text-secondary); font-size: 0.95em; }
 .topics-list li { margin-bottom: 8px; }

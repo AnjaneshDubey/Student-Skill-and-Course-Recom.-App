@@ -16,7 +16,7 @@ A comprehensive project featuring a modern Web Application, Swing GUI, and Servl
 - **Design Patterns**: DAO (Data Access Object) Pattern.
 
 **Database**
-- **MySQL 8.x**: Relational database for storing course details.
+- **H2 Database (In-Memory)**: Fast, embedded relational database for seamless data seeding and testing without external dependencies.
 - **JDBC**: Database connectivity using PreparedStatements for secure CRUD operations.
 
 **Legacy / Alternative Interfaces**
@@ -26,10 +26,11 @@ A comprehensive project featuring a modern Web Application, Swing GUI, and Servl
 🚀 Features
 ✅ Web-Based UI (Modern App)
 
-- Modern Glassmorphism UI
+- Modern Glassmorphism UI with smooth animations
 - REST API via built-in Java HttpServer
-- Dynamic search and filtering
-- Responsive and interactive design
+- Dynamic search, filtering, and smart autocomplete
+- In-depth curriculums (7-9 topics per course) and Must-Know Prerequisites
+- Integrated UI scrollbars for gracefully handling large course data
 
 
 ✅ Object-Oriented Programming
@@ -52,9 +53,9 @@ Generic DAO & Service layers
 
 Background loading using a custom thread: CourseLoaderThread
 
-✅ Database (JDBC + MySQL)
+✅ Database (JDBC + H2 Embedded)
 
-DBConnection.java for MySQL connectivity
+DBConnection.java handles schema creation and extensive data seeding natively
 
 CourseDAO.java performs CRUD operations
 
@@ -131,8 +132,7 @@ Compile
 javac -d bin -cp "bin;lib/*" src\**\*.java
 
 Run Web Server (Modern UI)
-cd bin
-java -cp ".;../lib/*" ui.WebServer
+java -cp "bin;lib/*" ui.WebServer
 Then open http://localhost:8080 in your browser.
 
 Run Desktop App (Swing UI)

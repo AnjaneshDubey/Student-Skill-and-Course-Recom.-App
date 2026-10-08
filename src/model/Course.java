@@ -12,11 +12,12 @@ public class Course {
     private String freeTool;
     private String premiumTool;
     private String advancedTopics;
+    private String prerequisites;
 
     // ------ Constructor ------
     public Course(int courseId, String courseName, String category, String difficulty,
                   double rating, int durationHours, String description,
-                  String freeTool, String premiumTool, String advancedTopics) {
+                  String freeTool, String premiumTool, String advancedTopics, String prerequisites) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.category = category;
@@ -27,12 +28,13 @@ public class Course {
         this.freeTool = freeTool;
         this.premiumTool = premiumTool;
         this.advancedTopics = advancedTopics;
+        this.prerequisites = prerequisites;
     }
 
     // ------ Constructor (Legacy) ------
     public Course(int courseId, String courseName, String category, String difficulty,
                   double rating, int durationHours, String description) {
-        this(courseId, courseName, category, difficulty, rating, durationHours, description, "Visual Studio Code", "IntelliJ IDEA", "Foundational Concepts");
+        this(courseId, courseName, category, difficulty, rating, durationHours, description, "Visual Studio Code", "IntelliJ IDEA", "Foundational Concepts", "Basic Computer Literacy");
     }
 
     // ------ Getters ------
@@ -46,6 +48,7 @@ public class Course {
     public String getFreeTool() { return freeTool; }
     public String getPremiumTool() { return premiumTool; }
     public String getAdvancedTopics() { return advancedTopics; }
+    public String getPrerequisites() { return prerequisites; }
 
     @Override
     public String toString() {

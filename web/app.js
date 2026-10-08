@@ -377,6 +377,9 @@ async function fetchRecommendations() {
             const topics = course.advancedTopics ? course.advancedTopics.split('|') : [];
             const topicsHtml = topics.map(t => `<li>${t}</li>`).join('');
             
+            const prereqs = course.prerequisites ? course.prerequisites.split('|') : [];
+            const prereqsHtml = prereqs.map(p => `<span class="prereq-tag">${p}</span>`).join('');
+            
             html += `<div class="card course-card glass-card" onclick="toggleDrawer(this)">
                 <div class="close-drawer" onclick="event.stopPropagation(); toggleDrawer(this.parentElement)">✕</div>
                 <h3>${course.name}</h3>
@@ -386,6 +389,11 @@ async function fetchRecommendations() {
                 <div class="course-details-drawer" onclick="event.stopPropagation()">
                     <div style="background:var(--white); padding:15px; border-radius:12px; font-size:0.95em; margin-bottom: 20px;">
                         ${course.description}
+                    </div>
+                    
+                    <h4 class="drawer-section-title">Must-Know Prerequisites</h4>
+                    <div style="margin-bottom: 20px;">
+                        ${prereqsHtml}
                     </div>
                     
                     <h4 class="drawer-section-title">Tools We Recommend</h4>
